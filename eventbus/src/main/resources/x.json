@@ -1,0 +1,10 @@
+{
+  "type": "vordering",
+  "body": {
+    "heffingkenmerk": "KT07HFRL20171028",
+    "middel": "MRB",
+    "belasting": "99",
+    "belastingjaar": "2017"
+    "betalingsreferentie": "12345-qwerty-98765"
+  }
+}

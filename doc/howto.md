@@ -5,6 +5,11 @@ Starten ActiveMQ:
 cd /usr/local/Cellar/activemq/5.15.0/
 bin/activemq start
 ~~~
+of   
+
+~~~sh
+/usr/local/Cellar/activemq/5.15.0/bin/activemq start
+~~~
 
 Console ActiveMQ:
 
@@ -13,7 +18,9 @@ http://127.0.0.1:8161/admin/
 ~~~
 
 # MySql
+
 Database info
+
 * Database: microservices
 * Userid/password: microservices/microservices
 * Tabel: event
