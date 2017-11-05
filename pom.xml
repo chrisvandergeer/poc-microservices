@@ -31,8 +31,6 @@
     </dependencyManagement>
 
     <modules>
-        <module>vordering-stub</module>
-        <module>ontvangvorderingen</module>
         <module>eventbus</module>
     </modules>
 
