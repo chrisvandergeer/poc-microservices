@@ -1,4 +1,4 @@
-package nl.cge.springboot;
+package nl.cge.eventbus;
 
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.boot.SpringApplication;

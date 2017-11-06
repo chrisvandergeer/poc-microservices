@@ -1,4 +1,6 @@
-package nl.cge.springboot.event;
+package nl.cge.eventbus.event;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +16,9 @@ public class Event {
 
     private String type;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     private LocalDateTime created;
+
     private String body;
     private String objectId;
 

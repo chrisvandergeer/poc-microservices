@@ -1,4 +1,4 @@
-package nl.cge.springboot;
+package nl.cge.eventbus;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

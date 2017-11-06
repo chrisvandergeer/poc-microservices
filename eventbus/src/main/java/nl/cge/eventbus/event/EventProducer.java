@@ -1,4 +1,4 @@
-package nl.cge.springboot.event;
+package nl.cge.eventbus.event;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;

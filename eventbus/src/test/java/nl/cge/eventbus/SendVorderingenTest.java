@@ -1,6 +1,6 @@
-package nl.cge.springboot;
+package nl.cge.eventbus;
 
-import nl.cge.springboot.event.EventProducer;
+import nl.cge.eventbus.event.EventProducer;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -18,17 +18,40 @@ public class SendVorderingenTest {
     @Autowired
     private EventProducer eventProducer;
 
+
     @Test
-    public void sendVordering() {
+    public void sendVorderingenEnBetalingen() {
+        String betalingskenmerk = UUID.randomUUID().toString();
+        sendVordering(betalingskenmerk, "99");
+        sendBetaling(betalingskenmerk, "99");
+
+        betalingskenmerk = UUID.randomUUID().toString();
+        sendVordering(betalingskenmerk, "80");
+        sendBetaling(betalingskenmerk, "97");
+
+        betalingskenmerk = UUID.randomUUID().toString();
+        sendVordering(betalingskenmerk, "96");
+        sendBetaling(betalingskenmerk, "86");
+
+        betalingskenmerk = UUID.randomUUID().toString();
+        sendVordering(betalingskenmerk, "91");
+
+        betalingskenmerk = UUID.randomUUID().toString();
+        sendBetaling(betalingskenmerk, "87");
+
+
+    }
+
+    public void sendVordering(String betalingskenmerk, String bedrag) {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("type", "vordering");
             JSONObject body = new JSONObject();
             body.put("heffingkenmerk", UUID.randomUUID().toString());
             body.put("middel", "MRB");
-            body.put("belasting", "99");
+            body.put("belasting", bedrag);
             body.put("belastingjaar", "2017");
-            body.put("betalingskenmerk", UUID.randomUUID().toString());
+            body.put("betalingskenmerk", betalingskenmerk);
             jsonObject.put("body", body);
             eventProducer.send(jsonObject.toString());
         } catch (JSONException e) {
@@ -36,14 +59,13 @@ public class SendVorderingenTest {
         }
     }
 
-    @Test
-    public void sendBetaling() {
+    public void sendBetaling(String betalingskenmerk, String bedrag) {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("type", "betaling");
             JSONObject body = new JSONObject();
-            body.put("betalingskenmerk", UUID.randomUUID().toString());
-            body.put("bedrag", "99");
+            body.put("betalingskenmerk", betalingskenmerk);
+            body.put("bedrag", bedrag);
             jsonObject.put("body", body);
             eventProducer.send(jsonObject.toString());
         } catch (JSONException e) {
