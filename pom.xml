@@ -62,6 +62,7 @@
     <modules>
         <module>eventbus</module>
         <module>toerekenen</module>
+        <module>testberichten</module>
     </modules>
 
 </project>

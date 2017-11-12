@@ -1,4 +1,4 @@
-package nl.cge.eventbus.event;
+package nl.cge.testberichten;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;

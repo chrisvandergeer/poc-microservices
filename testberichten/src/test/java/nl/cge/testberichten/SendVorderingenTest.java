@@ -1,6 +1,5 @@
-package nl.cge.eventbus;
+package nl.cge.testberichten;
 
-import nl.cge.eventbus.event.EventProducer;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -42,7 +41,7 @@ public class SendVorderingenTest {
 
     }
 
-    public void sendVordering(String betalingskenmerk, String bedrag) {
+    private void sendVordering(String betalingskenmerk, String bedrag) {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("type", "vordering");
@@ -59,7 +58,7 @@ public class SendVorderingenTest {
         }
     }
 
-    public void sendBetaling(String betalingskenmerk, String bedrag) {
+    private void sendBetaling(String betalingskenmerk, String bedrag) {
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("type", "betaling");

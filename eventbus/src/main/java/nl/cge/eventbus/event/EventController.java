@@ -10,14 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class EventController {
 
     @Autowired
-    private EventDao taskDao;
-
-    @Autowired
-    private EventProducer eventProducer;
+    private EventDao eventDao;
 
     @GetMapping
     public Iterable<Event> getEvents() {
-        return taskDao.findAll();
+        return eventDao.findAll();
     }
 
 }
