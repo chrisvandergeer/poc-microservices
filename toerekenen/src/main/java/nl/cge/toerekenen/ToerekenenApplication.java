@@ -12,7 +12,7 @@ import javax.jms.Queue;
 @SpringBootApplication
 @EnableScheduling
 @EnableJms
-public class SpringbootApplication {
+public class ToerekenenApplication {
 
     @Bean
     public Queue subscriptionsQueue() {
@@ -20,6 +20,6 @@ public class SpringbootApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootApplication.class, args);
+        SpringApplication.run(ToerekenenApplication.class, args);
     }
 }

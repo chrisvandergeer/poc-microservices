@@ -17,7 +17,6 @@ public class SendVorderingenTest {
     @Autowired
     private EventProducer eventProducer;
 
-
     @Test
     public void sendVorderingenEnBetalingen() {
         String betalingskenmerk = UUID.randomUUID().toString();
@@ -37,7 +36,6 @@ public class SendVorderingenTest {
 
         betalingskenmerk = UUID.randomUUID().toString();
         sendBetaling(betalingskenmerk, "87");
-
 
     }
 
