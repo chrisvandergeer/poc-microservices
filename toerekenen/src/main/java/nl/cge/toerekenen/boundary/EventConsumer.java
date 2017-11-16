@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.cge.toerekenen.base.ToerekenenEntity;
 import nl.cge.toerekenen.betaling.Betaling;
+import nl.cge.toerekenen.betaling.ToewijzenBetalingController;
 import nl.cge.toerekenen.vordering.Vordering;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,9 @@ public class EventConsumer {
 
     @Autowired
     private EntityManager entityManager;
+
+    @Autowired
+    private ToewijzenBetalingController toewijzenBetalingController;
 
 
     @JmsListener(destination = "toerekenenEventQueue")
@@ -42,6 +46,9 @@ public class EventConsumer {
         if (entity != null) {
             log.info(entity.getClass().getSimpleName() + " received: " + entity);
             entityManager.persist(entity);
+            if (entity instanceof Betaling) {
+                toewijzenBetalingController.execute((Betaling) entity);
+            }
         }
     }
 

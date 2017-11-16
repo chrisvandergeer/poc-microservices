@@ -10,7 +10,7 @@ import javax.jms.Queue;
 
 @SpringBootApplication
 @EnableJms
-public class SpringbootApplication {
+public class TestberichtenApplication {
 
 	@Bean
 	public Queue queue() {
@@ -18,6 +18,6 @@ public class SpringbootApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootApplication.class, args);
+		SpringApplication.run(TestberichtenApplication.class, args);
 	}
 }
