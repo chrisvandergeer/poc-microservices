@@ -1,24 +1,22 @@
 package nl.cge.toerekenen.base;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-@Getter
-@Setter
-@ToString
 @MappedSuperclass
-public class ToerekenenEntity {
+public class BaseEntity {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private Long eventId;
-    private String objectId;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }

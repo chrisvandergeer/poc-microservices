@@ -2,7 +2,8 @@ package nl.cge.toerekenen.boundary;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import nl.cge.toerekenen.base.ToerekenenEntity;
+import nl.cge.toerekenen.base.BaseEntity;
+import nl.cge.toerekenen.base.EventEntity;
 import nl.cge.toerekenen.betaling.Betaling;
 import nl.cge.toerekenen.betaling.ToewijzenBetalingController;
 import nl.cge.toerekenen.vordering.Vordering;
@@ -35,7 +36,7 @@ public class EventConsumer {
         JsonNode jsonNode = mapper.reader().readTree(message);
         String type = jsonNode.get("type").asText();
         JsonNode body = mapper.reader().readTree(jsonNode.get("body").asText());
-        ToerekenenEntity entity = null;
+        BaseEntity entity = null;
         if ("vordering".equals(type)) {
             entity = mapVordering(jsonNode, body);
         } else if ("betaling".equals(type)) {
@@ -52,7 +53,7 @@ public class EventConsumer {
         }
     }
 
-    private ToerekenenEntity mapBetaling(JsonNode jsonNode, JsonNode body) {
+    private BaseEntity mapBetaling(JsonNode jsonNode, JsonNode body) {
         Betaling betaling = mapEntityValues(new Betaling(), jsonNode);
         betaling.setBetalingskenmerk(body.get("betalingskenmerk").asText());
         betaling.setBedrag(body.get("bedrag").asInt());
@@ -60,7 +61,7 @@ public class EventConsumer {
         return betaling;
     }
 
-    private ToerekenenEntity mapVordering(JsonNode jsonNode, JsonNode body) {
+    private BaseEntity mapVordering(JsonNode jsonNode, JsonNode body) {
         Vordering vordering = mapEntityValues(new Vordering(), jsonNode);
         vordering.setHeffingkenmerk(body.get("heffingkenmerk").asText());
         vordering.setBetalingskenmerk(body.get("betalingskenmerk").asText());
@@ -71,7 +72,7 @@ public class EventConsumer {
         return vordering;
     }
 
-    private <E extends ToerekenenEntity> E mapEntityValues(E entity, JsonNode jsonNode) {
+    private <E extends EventEntity> E mapEntityValues(E entity, JsonNode jsonNode) {
         entity.setEventId(jsonNode.get("id").asLong());
         entity.setObjectId(jsonNode.get("objectId").asText());
         return entity;
