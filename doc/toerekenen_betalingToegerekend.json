@@ -1,0 +1,24 @@
+
+
+{
+  "type": "toewijzenBetalingGelukt",
+  "objectId": "uuidBetaling",
+  "body": {
+    "vordering": "[uuidVordering]"
+  }
+}
+
+{
+  "type": "toewijzingToegerekend",
+  "objectId": "uuidVordering",
+  "body": {
+    "betaling": "[uuidBetaling]",
+    "toegerekendbedrag": "[betalingBedrag]"
+  }
+}
+
+{
+  "type": "toewijzenBetalingMislukt",
+  "objectId": "uuidBetaling"
+}
+
