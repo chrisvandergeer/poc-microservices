@@ -18,7 +18,29 @@ public class SendVorderingenTest {
     private EventProducer eventProducer;
 
     @Test
+    public void sendVordering() {
+        int bedrag = 99;
+        String heffingkenmerk = UUID.randomUUID().toString();
+        String betalingskenmerk = UUID.randomUUID().toString();
+        try {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("eventName", "ontvangVordering");
+            JSONObject body = new JSONObject();
+            body.put("heffingkenmerk", heffingkenmerk);
+            body.put("middel", "MRB");
+            body.put("belastingjaar", "2017");
+            body.put("belasting", 99);
+            body.put("betalingskenmerk", betalingskenmerk);
+            jsonObject.put("body", body);
+            eventProducer.send(jsonObject.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void sendVorderingenEnBetalingen() {
+
         String betalingskenmerk = UUID.randomUUID().toString();
         sendVordering(betalingskenmerk, "99");
         sendBetaling(betalingskenmerk, "99");

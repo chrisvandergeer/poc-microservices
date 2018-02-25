@@ -8,18 +8,20 @@ import org.springframework.jms.annotation.EnableJms;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.jms.Queue;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @SpringBootApplication
 @EnableJms
 @EnableScheduling
 public class EventbusApplication {
 
-	@Bean
-	public Queue queue() {
-		return new ActiveMQQueue("events");
-	}
+		@Bean
+		public Queue queue() {
+			return new ActiveMQQueue("events");
+		}
 
-	public static void main(String[] args) {
-		SpringApplication.run(EventbusApplication.class, args);
-	}
+		public static void main(String[] args) {
+			SpringApplication.run(EventbusApplication.class, args);
+		}
 }
