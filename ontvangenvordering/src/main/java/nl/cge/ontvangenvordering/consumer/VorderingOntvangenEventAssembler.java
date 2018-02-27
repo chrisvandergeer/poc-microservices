@@ -3,10 +3,12 @@ package nl.cge.ontvangenvordering.consumer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.UUID;
 
+@Component
 public class VorderingOntvangenEventAssembler {
 
     public JSONObject assemble(String jsonVordering) {

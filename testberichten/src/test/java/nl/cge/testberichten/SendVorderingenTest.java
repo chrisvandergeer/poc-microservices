@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @RunWith(SpringRunner.class)
@@ -23,16 +24,25 @@ public class SendVorderingenTest {
         String heffingkenmerk = UUID.randomUUID().toString();
         String betalingskenmerk = UUID.randomUUID().toString();
         try {
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("eventName", "ontvangVordering");
-            JSONObject body = new JSONObject();
-            body.put("heffingkenmerk", heffingkenmerk);
-            body.put("middel", "MRB");
-            body.put("belastingjaar", "2017");
-            body.put("belasting", 99);
-            body.put("betalingskenmerk", betalingskenmerk);
-            jsonObject.put("body", body);
-            eventProducer.send(jsonObject.toString());
+            JSONObject json = new JSONObject();
+            json.put("heffingkenmerk", heffingkenmerk);
+            json.put("middel", "MRB");
+            json.put("belastingjaar", "2017");
+            json.put("belasting", 99);
+            json.put("betalingskenmerk", betalingskenmerk);
+
+            JSONObject periode = new JSONObject();
+            LocalDate begindatum = LocalDate.of(2017, 2, 20);
+            periode.put("begindatum", begindatum);
+            periode.put("einddatum", begindatum.plusMonths(3));
+            json.put("periode", periode);
+
+            JSONObject middelspecifiek = new JSONObject();
+            middelspecifiek.put("begindatumVerkort", begindatum.plusDays(7));
+            middelspecifiek.put("einddatumVerkort", begindatum.plusMonths(3));
+            json.put("middelspecifiek", middelspecifiek);
+
+            eventProducer.send(json.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

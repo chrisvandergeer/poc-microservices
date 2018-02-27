@@ -14,8 +14,13 @@ import javax.jms.Queue;
 public class OntvangenVorderingApplication {
 
     @Bean
-    public Queue queue() {
+    public Queue ontvangVorderingQueue() {
         return new ActiveMQQueue("ontvangVorderingQueue");
+    }
+
+    @Bean
+    public Queue sendEventQueue() {
+        return new ActiveMQQueue("events");
     }
 
     public static void main(String[] args) {

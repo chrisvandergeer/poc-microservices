@@ -38,6 +38,22 @@ public class Event {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
     private LocalDateTime created;
 
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public void setProcesName(String procesName) {
+        this.procesName = procesName;
+    }
+
+    public void setProcesId(String procesId) {
+        this.procesId = procesId;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
     /**
      * Event body.
      */

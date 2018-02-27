@@ -10,11 +10,11 @@ import javax.jms.Queue;
 
 @SpringBootApplication
 @EnableJms
-public class TestberichtenApplication {
+public class 	TestberichtenApplication {
 
 	@Bean
 	public Queue queue() {
-		return new ActiveMQQueue("events");
+		return new ActiveMQQueue("ontvangVorderingQueue");
 	}
 
 	public static void main(String[] args) {
