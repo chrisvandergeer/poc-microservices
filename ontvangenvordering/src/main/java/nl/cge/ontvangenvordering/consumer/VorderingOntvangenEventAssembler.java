@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Component
@@ -16,6 +17,7 @@ public class VorderingOntvangenEventAssembler {
         event.put("eventName", "vorderingOntvangen");
         event.put("processName", "verwerkVordering");
         event.put("processId", UUID.randomUUID().toString());
+        event.put("created", LocalDateTime.now());
 
         JsonNode bodySrc = convert2JsonNode(jsonVordering);
         JSONObject eventBody = new JSONObject();

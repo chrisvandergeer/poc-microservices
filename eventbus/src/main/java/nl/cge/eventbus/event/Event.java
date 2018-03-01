@@ -2,11 +2,9 @@ package nl.cge.eventbus.event;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Event {
@@ -36,7 +34,8 @@ public class Event {
      * Creation date/time.
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-    private LocalDateTime created;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
 
     public void setEventName(String eventName) {
         this.eventName = eventName;
@@ -54,15 +53,15 @@ public class Event {
         this.body = body;
     }
 
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     /**
      * Event body.
      */
+    @Column(length = 2048)
     private String body;
-
-    @PrePersist
-    public void onPersist() {
-        this.created = LocalDateTime.now();
-    }
 
     @Override
     public String toString() {
